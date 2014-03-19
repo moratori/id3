@@ -1,0 +1,11 @@
+HDD,CPU,MEMORY,MANIFACTURE,CLASS
+small,high,small,A,high
+large,low,large,B,high
+large,low,small,C,low
+small,high,small,F,low
+large,high,large,D,high
+large,low,large,E,high
+middle,low,small,B,low
+middle,low,small,F,low
+large,high,small,B,high
+small,low,small,D,low
