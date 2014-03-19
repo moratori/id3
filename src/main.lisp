@@ -1,8 +1,12 @@
 
+#|
 (ns:defns id3.core
 		  (:use :cl)
 		  (:import-from :cl-ppcre
 						:split))
+|#
+(ql:quickload :cl-ppcre)
+(import '(cl-ppcre:split))
 
 
 (defvar *mode* #'string=)
@@ -12,6 +16,10 @@
 (defun class-key (property-list)
   (car (last property-list)))
 
+;; 以下の２値を返してくれればloadfileでなくてもよい
+;; その場合 *mode* を適切な等値比較述語にする必要あり
+;; (property1 property2 ...)
+;; (#S(HASH)1 #S(HASH)2 ...)
 (defun loadfile (path)
   (with-open-file (in path :direction :input :if-does-not-exist :error)
 	(let ((property-list (split +DELIMITER+ (read-line in))))
@@ -74,10 +82,29 @@
 			   (- init-val (property-entropy key y ents)))))))
 
 
+(defstruct (leaf (:constructor termianl (edge-name label)))
+  (edge-name "" :type string)
+  (label "" :type string))
+
+(defstruct (node (:constructor node (edge-name label child-list)))
+  (edge-name "" :type string)
+  (label "" :type string)
+  (child-list nil :type list
+			 ;; every factor in child-list shuold be node or leaf
+			  ))
+
+(defun make-tree (priority-property-list ents)
+  
+  )
+
 (multiple-value-bind (property-list ents) (loadfile "test.csv")
 	(print (sort-property 
 			 property-list
 			 ents)))
+
+
+
+
 
 
 
