@@ -6,10 +6,12 @@
 
 
 (defsystem id3
-  :depends-on (:namespace :cl-ppcre)
+  :depends-on (:namespace :cl-ppcre :iterate)
   :serial t
   :components 
     ((:module "src"
       :serial t
       :components 
-        ((:file "main")))))
+        ((:file "struct")
+		 (:file "main")
+         (:file "out")))))
