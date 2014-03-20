@@ -1,10 +1,9 @@
 
-#|
 (ns:defns id3.core
 		  (:use :cl)
 		  (:import-from :cl-ppcre
 						:split))
-|#
+
 (ql:quickload :cl-ppcre)
 (import '(cl-ppcre:split))
 
@@ -82,29 +81,64 @@
 			   (- init-val (property-entropy key y ents)))))))
 
 
-(defstruct (leaf (:constructor termianl (edge-name label)))
-  (edge-name "" :type string)
-  (label "" :type string))
 
-(defstruct (node (:constructor node (edge-name label child-list)))
-  (edge-name "" :type string)
-  (label "" :type string)
+(defstruct (node (:constructor node (edge-name label type child-list)))
+  (edge-name "" :type t)
+  (label "" :type t)
+  (type 'branch :type symbol)
   (child-list nil :type list
 			 ;; every factor in child-list shuold be node or leaf
 			  ))
 
-(defun make-tree (priority-property-list ents)
-  
-  )
+(defun collect-ent (property val ents)
+  (remove-if-not
+	(lambda (ent)
+	  (funcall *mode* (gethash property ent) val)
+	  ) ents))
+
+(defun every-same? (class-key ents)
+  ;; ents mustn't nil
+  (let ((val (gethash class-key (car ents))))
+	(every 
+	  (lambda (ent)
+		(funcall *mode* (gethash class-key ent) val)) 
+	  (cdr ents))))
+
+;; ents が nil　だったらつまり 学習データが無いんだから...?
+;; 
+(defun make-tree (from class-key priority-property-list ents)
+  (cond 
+	((null ents)
+	 (format t "ents is nil!!"))
+	((null priority-property-list)
+	 (format t "decide by majority!!"))
+	((every-same? class-key ents)
+	 (node 
+	   from 
+	   (gethash class-key (car ents))
+	   'leaf
+	   nil))
+	(t 
+	  (let ((tar (car priority-property-list)))
+		;; tar == MANIFACTURE
+		(node 
+		  from
+		  tar 
+		  'branch
+		  (mapcar 
+			(lambda (x)
+			 (make-tree x class-key (cdr priority-property-list)
+						(collect-ent 
+						  tar 
+						  x
+						  ents)))
+			(property-domain tar ents)))))))
+
+
 
 (multiple-value-bind (property-list ents) (loadfile "test.csv")
-	(print (sort-property 
+  (let ((plist (sort-property 
 			 property-list
 			 ents)))
-
-
-
-
-
-
-
+	(print (make-tree "" (class-key property-list)
+					  plist ents))))
