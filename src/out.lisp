@@ -1,7 +1,10 @@
 
 (ns:defns id3.out
 	(:use :cl
-		  :id3.struct))
+		  :id3.struct)
+	(:import-from :id3.core
+				  :make-tree
+				  :loadfile))
 
 
 (defun node-definition (tree)
@@ -56,3 +59,14 @@
 	  (init-file out (pathname-name path) def)
 	  (%write-tree out tree)
 	  (format out "}"))))
+
+
+@export
+(defun decision-tree (in-path out-path)
+ (multiple-value-bind (property-list ents) (loadfile in-path)
+  (let ((tree (make-tree property-list ents)))
+	 (write-tree 
+	   out-path
+	   tree))))
+
+

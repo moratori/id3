@@ -1,29 +1,29 @@
 digraph test1 {
-  N829[label = "MANIFACTURE" , shape = diamond];
-  N817[label = "high" , shape = circle];
-  N820[label = "MEMORY" , shape = diamond];
-  N818[label = "low" , shape = circle];
-  N819[label = "high" , shape = circle];
+  N828[label = "MANIFACTURE" , shape = diamond];
+  N816[label = "high" , shape = circle];
+  N819[label = "MEMORY" , shape = diamond];
+  N817[label = "low" , shape = circle];
+  N818[label = "high" , shape = circle];
+  N820[label = "low" , shape = circle];
   N821[label = "low" , shape = circle];
-  N822[label = "low" , shape = circle];
-  N827[label = "MEMORY" , shape = diamond];
-  N825[label = "HDD" , shape = diamond];
-  N823[label = "high" , shape = circle];
-  N824[label = "low" , shape = circle];
-  N826[label = "high" , shape = circle];
-  N828[label = "high" , shape = circle];
+  N826[label = "MEMORY" , shape = diamond];
+  N824[label = "HDD" , shape = diamond];
+  N822[label = "high" , shape = circle];
+  N823[label = "low" , shape = circle];
+  N825[label = "high" , shape = circle];
+  N827[label = "high" , shape = circle];
 
 
-  N829 -> N817[label = "E"];
-  N829 -> N820[label = "D"];
-  N829 -> N821[label = "F"];
-  N829 -> N822[label = "C"];
-  N829 -> N827[label = "B"];
-  N829 -> N828[label = "A"];
-  N820 -> N818[label = "small"];
-  N820 -> N819[label = "large"];
-  N827 -> N825[label = "small"];
-  N827 -> N826[label = "large"];
-  N825 -> N823[label = "large"];
-  N825 -> N824[label = "middle"];
+  N828 -> N816[label = "E"];
+  N828 -> N819[label = "D"];
+  N828 -> N820[label = "F"];
+  N828 -> N821[label = "C"];
+  N828 -> N826[label = "B"];
+  N828 -> N827[label = "A"];
+  N819 -> N817[label = "small"];
+  N819 -> N818[label = "large"];
+  N826 -> N824[label = "small"];
+  N826 -> N825[label = "large"];
+  N824 -> N822[label = "large"];
+  N824 -> N823[label = "middle"];
 }
