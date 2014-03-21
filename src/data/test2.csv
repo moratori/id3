@@ -1,0 +1,6 @@
+WETHER,WIND,HUMIDITY,WATCHING
+sunny,strong,high,no
+cloud,weak,high,yes
+cloud,strong,low,no
+sunny,weak,high,yes
+rain,weak,high,no

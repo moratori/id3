@@ -1,0 +1,15 @@
+digraph test2 {
+  N822[label = "WIND" , shape = diamond];
+  N820[label = "WETHER" , shape = diamond];
+  N817[label = "no" , shape = circle];
+  N818[label = "yes" , shape = circle];
+  N819[label = "yes" , shape = circle];
+  N821[label = "no" , shape = circle];
+
+
+  N822 -> N820[label = "weak"];
+  N822 -> N821[label = "strong"];
+  N820 -> N817[label = "rain"];
+  N820 -> N818[label = "sunny"];
+  N820 -> N819[label = "cloud"];
+}

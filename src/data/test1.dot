@@ -1,0 +1,29 @@
+digraph test1 {
+  N829[label = "MANIFACTURE" , shape = diamond];
+  N817[label = "high" , shape = circle];
+  N820[label = "MEMORY" , shape = diamond];
+  N818[label = "low" , shape = circle];
+  N819[label = "high" , shape = circle];
+  N821[label = "low" , shape = circle];
+  N822[label = "low" , shape = circle];
+  N827[label = "MEMORY" , shape = diamond];
+  N825[label = "HDD" , shape = diamond];
+  N823[label = "high" , shape = circle];
+  N824[label = "low" , shape = circle];
+  N826[label = "high" , shape = circle];
+  N828[label = "high" , shape = circle];
+
+
+  N829 -> N817[label = "E"];
+  N829 -> N820[label = "D"];
+  N829 -> N821[label = "F"];
+  N829 -> N822[label = "C"];
+  N829 -> N827[label = "B"];
+  N829 -> N828[label = "A"];
+  N820 -> N818[label = "small"];
+  N820 -> N819[label = "large"];
+  N827 -> N825[label = "small"];
+  N827 -> N826[label = "large"];
+  N825 -> N823[label = "large"];
+  N825 -> N824[label = "middle"];
+}

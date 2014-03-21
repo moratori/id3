@@ -108,10 +108,10 @@
 		   (funcall *mode* class-val (gethash class-key ent)))  ents))))
 
 ;; ents が nil　だったらつまり 学習データが無いんだから...?
-(defun %make-tree (from class-key priority-property-list ents)
+(defun %make-tree (from class-key priority-property-list ents default)
   (cond 
 	((null ents)
-	 (error "ents mustn't be empty"))
+	 (node from default +LEAF+ nil))
 	((null priority-property-list)
 	 (node from (decide-by-majority class-key ents) +LEAF+ nil))
 	((every-same? class-key ents)
@@ -122,18 +122,24 @@
 		  (mapcar 
 			(lambda (x)
 			 (%make-tree x class-key (cdr priority-property-list)
-			   (collect-ent tar x ents)))
+			   (collect-ent tar x ents)
+			   default))
 			(property-domain tar ents)))))))
 
 @export
 (defun make-tree (raw-property-list ents)
   ;; raw-property-list = (property1 property2 ... class-name)
   ;; ents = (HASH1 HASH2 ...)
-  (%make-tree 
-	"" 
-	(class-key raw-property-list) 
-	(sort-property raw-property-list ents)
-	ents))
+  (when (or (null raw-property-list)
+			(null ents))
+	(error "empty error"))
+  (let ((class-key (class-key raw-property-list)))
+	(%make-tree 
+	  "" 
+	  class-key 
+	  (sort-property raw-property-list ents)
+	  ents
+	  (decide-by-majority class-key ents))))
 
 
 
