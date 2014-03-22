@@ -1,0 +1,13 @@
+digraph animal {
+  N7900[label = "発生形態" , shape = diamond];
+  N7896[label = "哺乳類" , shape = circle];
+  N7899[label = "体温" , shape = diamond];
+  N7897[label = "爬虫類" , shape = circle];
+  N7898[label = "鳥類" , shape = circle];
+
+
+  N7900 -> N7896[label = "胎生"];
+  N7900 -> N7899[label = "卵生"];
+  N7899 -> N7897[label = "変温"];
+  N7899 -> N7898[label = "恒温"];
+}

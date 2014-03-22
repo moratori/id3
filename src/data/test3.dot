@@ -1,0 +1,31 @@
+digraph out {
+  N829[label = "水酸化ナトリウム過剰量" , shape = diamond];
+  N816[label = "バリウムイオン" , shape = circle];
+  N817[label = "カルシウムイオン" , shape = circle];
+  N818[label = "鉄3イオン" , shape = circle];
+  N819[label = "鉄2イオン" , shape = circle];
+  N820[label = "銅2イオン" , shape = circle];
+  N827[label = "アンモニア過剰量" , shape = diamond];
+  N821[label = "亜鉛イオン" , shape = circle];
+  N826[label = "アンモニア少量" , shape = diamond];
+  N825[label = "水酸化ナトリウム少量" , shape = diamond];
+  N824[label = "塩酸" , shape = diamond];
+  N822[label = "アルミニウムイオン" , shape = circle];
+  N823[label = "鉛2イオン" , shape = circle];
+  N828[label = "銀イオン" , shape = circle];
+
+
+  N829 -> N816[label = "沈殿なし"];
+  N829 -> N817[label = "白色沈殿"];
+  N829 -> N818[label = "赤褐色沈殿"];
+  N829 -> N819[label = "淡緑色沈殿"];
+  N829 -> N820[label = "淡青色沈殿"];
+  N829 -> N827[label = "無色溶液"];
+  N829 -> N828[label = "褐色沈殿"];
+  N827 -> N821[label = "無色溶液"];
+  N827 -> N826[label = "白色沈殿"];
+  N826 -> N825[label = "白色沈殿"];
+  N825 -> N824[label = "白色沈殿"];
+  N824 -> N822[label = "沈殿なし"];
+  N824 -> N823[label = "白色沈殿"];
+}

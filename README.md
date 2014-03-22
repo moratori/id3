@@ -1,6 +1,16 @@
 ID3
 =====
 
-ID3で決定木を生成します。
+CSVファイルとかからID3で決定木を生成します。
 
-そもそもCL-ID3という、そのものずばりなのがあるっぽいので車輪の再発明です
+![animal-csv](src/data/test4.csv)
+
+![animal-tree](src/data/test4.png)
+
+Usage
+=====
+
+```
+* (ql:quickload :id3)
+* (id3.out::decision-tree "filename.csv" "dotsource.dot")
+```
